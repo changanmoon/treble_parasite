@@ -1,22 +1,22 @@
 #!/bin/bash
 
 echo
-echo "--------------------------------------"
-echo "          AOSP 14.0 Buildbot          "
-echo "                  by                  "
-echo "                ponces                "
-echo "--------------------------------------"
+echo "------------------------------------------------------"
+echo "          TheParasiteProject 14.0 Buildbot            "
+echo "                          by                          "
+echo "                      changanmoon                     "
+echo "------------------------------------------------------"
 echo
 
 set -e
 
-BL=$PWD/treble_aosp
+BL=$PWD/treble_parasite
 BD=$HOME/builds
 
 initRepos() {
     if [ ! -d .repo ]; then
         echo "--> Initializing workspace"
-        repo init -u https://android.googlesource.com/platform/manifest -b android-14.0.0_r31 --git-lfs
+        repo init --depth=1 --no-repo-verify -u https://github.com/TheParasiteProject/manifest -b main -g default,-mips,-darwin,-notdefault
         echo
 
         echo "--> Preparing local manifest"
@@ -29,7 +29,7 @@ initRepos() {
 
 syncRepos() {
     echo "--> Syncing repos"
-    repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all) || repo sync -c --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
+    repo sync -c --force-sync --optimized-fetch --no-clone-bundle --no-tags --prune -j$(nproc --all) && repo forall -c git lfs pull
     echo
 }
 
@@ -44,8 +44,8 @@ applyPatches() {
 
     echo "--> Generating makefiles"
     cd device/phh/treble
-    cp $BL/build/aosp.mk .
-    bash generate.sh aosp
+    cp $BL/build/parasite.mk .
+    bash generate.sh parasite
     cd ../../..
     echo
 }
@@ -87,13 +87,7 @@ buildVndkliteVariant() {
 }
 
 buildVariants() {
-    buildVariant treble_a64_bvN
-    buildVariant treble_a64_bgN
-    buildVariant treble_arm64_bvN
     buildVariant treble_arm64_bgN
-    buildVndkliteVariant treble_a64_bvN
-    buildVndkliteVariant treble_a64_bgN
-    buildVndkliteVariant treble_arm64_bvN
     buildVndkliteVariant treble_arm64_bgN
 }
 
@@ -105,7 +99,7 @@ generatePackages() {
         [[ "$filename" == *"_a64_"* ]] && arch="arm32_binder64" || arch="arm64"
         [[ "$filename" == *"_bvN"* ]] && variant="vanilla" || variant="gapps"
         [[ "$filename" == *"-vndklite.img" ]] && vndk="-vndklite" || vndk=""
-        name="aosp-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
+        name="parasite-${arch}-ab-${variant}${vndk}-14.0-$buildDate"
         xz -cv "$file" -T0 > $BD/"$name".img.xz
     done
     rm -rf $BD/system-*.img
@@ -118,7 +112,7 @@ generateOta() {
     buildDate="$(date +%Y%m%d)"
     timestamp="$START"
     json="{\"version\": \"$version\",\"date\": \"$timestamp\",\"variants\": ["
-    find $BD/ -name "aosp-*-14.0-$buildDate.img.xz" | sort | {
+    find $BD/ -name "parasite-*-14.0-$buildDate.img.xz" | sort | {
         while read file; do
             filename="$(basename $file)"
             [[ "$filename" == *"-arm32_"* ]] && arch="a64" || arch="arm64"
@@ -126,7 +120,7 @@ generateOta() {
             [[ "$filename" == *"-vndklite-"* ]] && vndk="-vndklite" || vndk=""
             name="treble_${arch}_b${variant}N${vndk}"
             size=$(wc -c $file | awk '{print $1}')
-            url="https://github.com/ponces/treble_aosp/releases/download/$version/$filename"
+            url="https://github.com/changanmoon/treble_parasite/releases/download/$version/$filename"
             json="${json} {\"name\": \"$name\",\"size\": \"$size\",\"url\": \"$url\"},"
         done
         json="${json%?}]}"
