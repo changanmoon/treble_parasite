@@ -1,8 +1,9 @@
 # TheParasiteProject GSI (Experiemental)
 
 ## Note
-This repo is experimental. Please use it with caution (just like the original TheParasiteProject, as it is personal)!
-Moreover, of course, I am not responsible for any building failure, broken changes, boot loops, etc. :)
+This repo is experimental. I am not responsible for any building failure, broken changes, boot loops, etc.
+
+Please use it with caution (as the original project `TheParasiteProject` is personal). :)
 
 ## Build
 To get started with building TheParasiteProject GSI, you'll need to get familiar with [Git and Repo](https://source.android.com/source/using-repo.html) as well as [How to build a GSI](https://github.com/phhusson/treble_experimentations/wiki/How-to-build-a-GSI%3F).
@@ -18,9 +19,6 @@ To get started with building TheParasiteProject GSI, you'll need to get familiar
     ```
     bash treble_parasite/build.sh
     ```
-
-## Issues
-[Open issue](https://github.com/ponces/treble_aosp/issues/new/choose)
 
 ## Credits
 Special thanks to these people (and projects) because this repository would not be possible without their efforts on other projects: 
