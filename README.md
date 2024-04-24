@@ -1,5 +1,9 @@
 # TheParasiteProject GSI (Experiemental)
 
+## Note
+This repo is experimental. Please use it with caution (just like the original TheParasiteProject, as it is personal)!
+Moreover, of course, I am not responsible for any building failure, broken changes, boot loops, etc. :)
+
 ## Build
 To get started with building TheParasiteProject GSI, you'll need to get familiar with [Git and Repo](https://source.android.com/source/using-repo.html) as well as [How to build a GSI](https://github.com/phhusson/treble_experimentations/wiki/How-to-build-a-GSI%3F).
 - Create a new working directory for your AOSP build and navigate to it:
@@ -19,7 +23,7 @@ To get started with building TheParasiteProject GSI, you'll need to get familiar
 [Open issue](https://github.com/ponces/treble_aosp/issues/new/choose)
 
 ## Credits
-These people have helped this project in some way or another, so they should be the ones who receive all the credit:
+Special thanks to these people (and projects) because this repository would not be possible without their efforts on other projects: 
 - [TheParasiteProject](https://github.com/TheParasiteProject)
 - [phhusson](https://github.com/phhusson)
 - [ponces](https://github.com/ponces)
@@ -31,4 +35,3 @@ These people have helped this project in some way or another, so they should be 
 - [sooti](https://github.com/sooti)
 - [Iceows](https://github.com/Iceows)
 - [ChonDoit](https://github.com/ChonDoit)
-- 
