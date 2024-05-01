@@ -1,13 +1,13 @@
 # TheParasiteProject GSI (Experiemental)
 
 ## Note
-This repo is experimental. I am not responsible for any building failure, broken changes, boot loops, etc.
+**This repo is experimental.** Please use it with caution, as the original project `TheParasiteProject` is a personal project.
 
-Please use it with caution (as the original project `TheParasiteProject` is personal). :)
+Therefore, I am not responsible for any building failure, broken change, boot loop, etc. :)
 
 ## Build
 To get started with building TheParasiteProject GSI, you'll need to get familiar with [Git and Repo](https://source.android.com/source/using-repo.html) as well as [How to build a GSI](https://github.com/phhusson/treble_experimentations/wiki/How-to-build-a-GSI%3F).
-- Create a new working directory for your AOSP build and navigate to it:
+- Create a new working directory for your TheParasiteProject build and navigate to it:
     ```
     mkdir parasite; cd parasite
     ```
